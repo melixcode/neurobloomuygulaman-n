@@ -1,0 +1,395 @@
+/* --- KÜRESEL TASARIM SİSTEMİ & CSS DEĞİŞKENLERİ --- */
+:root {
+    --primary-blue: #4A90E2;
+    --lavender: #9B5DE5;
+    --soft-pink: #F15BB5;
+    --bg-light: #F8F9FA;
+    --dark-text: #2D3748;
+    --success: #00F5D4;
+    --card-shadow: 0 8px 24px rgba(149, 157, 165, 0.15);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--dark-text);
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- MOBİL ÖNCELİKLİ GÖRÜNÜM SARMALAYICI --- */
+.view {
+    display: none;
+    width: 100%;
+    max-width: 430px; /* iPhone 14 Pro Max Genişlik standardı */
+    height: 100vh;
+    min-height: -webkit-fill-available;
+    background: white;
+    position: relative;
+    overflow-y: auto;
+    flex-direction: column;
+    box-shadow: 0 0 40px rgba(0,0,0,0.05);
+}
+
+.view.active {
+    display: flex;
+}
+
+.container {
+    padding: 20px;
+    flex: 1;
+}
+
+/* --- BİLEŞENLER & KARTLAR --- */
+.card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 3px solid #E2E8F0;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+.text-center { text-align: center; }
+.full-width { width: 100%; }
+
+/* --- BUTONLAR --- */
+.btn {
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 0 #357ABD;
+}
+
+.btn-primary:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background: #E2E8F0;
+    color: var(--dark-text);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* --- AÇILIŞ EKRANI (SPLASH) --- */
+#splash-screen {
+    background: linear-gradient(135deg, var(--primary-blue), var(--lavender));
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-animation {
+    font-size: 80px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.brand-name {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-top: 10px;
+}
+
+.loader-bar {
+    width: 200px;
+    height: 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.loader-progress {
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: load 2.5s infinite linear;
+}
+
+/* --- ROL SEÇİMİ --- */
+.role-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.role-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.role-icon { font-size: 40px; }
+
+/* --- FORM KONTROLLERİ --- */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 2px solid #CBD5E1;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.perm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+/* --- UYGULAMA ÜST HEADER VE ALT NAVİGASYON --- */
+.app-header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #E2E8F0;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.user-stats {
+    display: flex;
+    gap: 12px;
+    font-weight: bold;
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background: white;
+    border-top: 2px solid #E2E8F0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #718096;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: var(--primary-blue);
+}
+
+/* --- NEUROBOT REHBER ALANI --- */
+.neurobot-guide {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: linear-gradient(to right, #EEF2F3, #8e9eab);
+    border: none;
+}
+
+.neurobot-avatar {
+    font-size: 48px;
+}
+
+/* --- MODÜLLER GRID --- */
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.module-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.module-card.locked {
+    opacity: 0.6;
+    background: #F1F5F9;
+}
+
+.mod-icon { font-size: 36px; margin-bottom: 8px; }
+
+/* --- ETKİLEŞİMLİ ODASI (ROOM CANVAS) --- */
+.room-container {
+    width: 100%;
+    height: 350px;
+    background: #FEF3C7;
+    position: relative;
+    border-radius: var(--radius-lg);
+    margin: 20px 0;
+    overflow: hidden;
+    border: 4px solid #F59E0B;
+}
+
+.room-bot-wrapper {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.room-neurobot {
+    font-size: 80px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.draggable-item {
+    position: absolute;
+    font-size: 40px;
+    cursor: move;
+    user-select: none;
+}
+
+/* --- MAĞAZA VE TABLOLAR --- */
+.shop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.shop-item {
+    text-align: center;
+}
+
+.item-visual { font-size: 48px; display: block; margin-bottom: 8px; }
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th, .report-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+/* --- CANLI KAMERA VE AKTİF TERAPİ --- */
+.camera-feedback-box {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    padding: 0;
+}
+
+#webcam-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Ayna modu */
+}
+
+.face-overlay-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border: 3px dashed var(--soft-pink);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cam-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    border-radius: 4px;
+}
+
+.mic-huge-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: var(--soft-pink);
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(241, 91, 181, 0.4);
+    transition: var(--transition);
+}
+
+.mic-huge-btn.recording {
+    background: red;
+    animation: pulse 1s infinite;
+}
+
+/* --- DEMO VE KART YAPILARI --- */
+.demo-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* --- ANİMASYONLAR --- */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes load {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
