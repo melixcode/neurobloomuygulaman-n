@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NeuroBloom - Çocuk Gelişim Platformu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+</head>
+<body>
+
+    <section id="splash-screen" class="view active">
+        <div class="splash-content">
+            <div class="logo-animation">🌸</div>
+            <h1 class="brand-name">NeuroBloom</h1>
+            <p class="tagline">Konuşmanı Çiçeklendir</p>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </section>
+
+    <section id="welcome-screen" class="view">
+        <div class="container text-center">
+            <h2>Hoş Geldiniz!</h2>
+            <p>Lütfen devam etmek için rolünüzü seçin:</p>
+            <div class="role-cards">
+                <button class="role-btn card" data-role="child">
+                    <span class="role-icon">🧒</span>
+                    <h3>Çocuk</h3>
+                </button>
+                <button class="role-btn card" data-role="parent">
+                    <span class="role-icon">👪</span>
+                    <h3>Ebeveyn</h3>
+                </button>
+                <button class="role-btn card" data-role="therapist">
+                    <span class="role-icon">🩺</span>
+                    <h3>Terapist</h3>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="onboarding-screen" class="view">
+        <div class="container">
+            <h2>İlk Kurulum ve İzinler</h2>
+            <div class="form-group">
+                <label for="lang-select">Dil Seçimi / Language:</label>
+                <select id="lang-select" class="form-control">
+                    <option value="tr">Türkçe</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+            
+            <div class="permissions-list">
+                <h3>Gerekli Donanım İzinleri</h3>
+                <div class="perm-row">
+                    <span>🎙️ Mikrofon (Ses Analizi İçin)</span>
+                    <button id="btn-perm-mic" class="btn btn-sm btn-secondary">İzin Ver</button>
+                </div>
+                <div class="perm-row">
+                    <span>📷 Kamera (Ağız/Yüz Takibi İçin)</span>
+                    <button id="btn-perm-cam" class="btn btn-sm btn-secondary">İzin Ver</button>
+                </div>
+                <div class="perm-row">
+                    <span>🔔 Bildirimler (Günlük Hatırlatıcı)</span>
+                    <button id="btn-perm-notif" class="btn btn-sm btn-secondary">İzin Ver</button>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <label for="username">Kullanıcı Adı:</label>
+                <input type="text" id="username" class="form-control" placeholder="Adınızı girin...">
+            </div>
+
+            <button id="btn-complete-setup" class="btn btn-primary full-width">Kurulumu Tamamla & Başla</button>
+        </div>
+    </section>
+
+    <section id="child-dashboard" class="view">
+        <header class="app-header">
+            <div class="user-stats">
+                <span class="stat-item">🔥 <span id="child-streak">5</span></span>
+                <span class="stat-item">🪙 <span id="child-coins">120</span></span>
+                <span class="stat-item">⭐ LVL <span id="child-level">12</span></span>
+            </div>
+            <button class="btn-logout">Çıkış</button>
+        </header>
+
+        <div class="container main-content">
+            <div class="neurobot-guide card">
+                <div class="neurobot-avatar" id="neurobot-avatar-display">🌱</div>
+                <div class="neurobot-speech">
+                    <p id="neurobot-speech-bubble">Merhaba! Bugün konuşma egzersizleri yapmaya hazır mısın?</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">Terapi Yolculuğun</h3>
+            <div class="modules-grid">
+                <div class="module-card unlocked card" data-module="letter">
+                    <span class="mod-icon">🅰️</span>
+                    <h4>Harf Seviyesi</h4>
+                </div>
+                <div class="module-card unlocked card" data-module="syllable">
+                    <span class="mod-icon">🧩</span>
+                    <h4>Hece Seviyesi</h4>
+                </div>
+                <div class="module-card unlocked card" data-module="word">
+                    <span class="mod-icon">🗣️</span>
+                    <h4>Kelime Seviyesi</h4>
+                </div>
+                <div class="module-card locked card" data-module="sentence">
+                    <span class="mod-icon">🔒</span>
+                    <h4>Cümle Seviyesi</h4>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-target="child-dashboard">🗺️ Yolculuk</button>
+            <button class="nav-item" data-target="neurobot-room-view">🏠 Bot Odası</button>
+            <button class="nav-item" data-target="shop-view">🛒 Mağaza</button>
+        </nav>
+    </section>
+
+    <section id="neurobot-room-view" class="view">
+        <header class="app-header">
+            <h3>NeuroBot'un Odası</h3>
+            <button class="btn btn-sm btn-secondary back-to-dash">Geri</button>
+        </header>
+        <div class="room-container" id="room-canvas">
+            <div class="room-bot-wrapper">
+                <div class="room-neurobot" id="room-bot-character">🌱</div>
+                <div class="bot-stage-badge">Evrim: <span id="bot-stage-name">Filiz</span></div>
+            </div>
+            <div class="draggable-item" draggable="true" id="decor-lamp" style="top:20%; left:10%;">💡</div>
+            <div class="draggable-item" draggable="true" id="decor-plant" style="top:60%; left:75%;">🌵</div>
+        </div>
+        <div class="room-controls">
+            <p class="hint-text">Eşyaları sürükleyerek odayı düzenle! Bot'un üzerine tıklayarak onu sev.</p>
+        </div>
+    </section>
+
+    <section id="shop-view" class="view">
+        <header class="app-header">
+            <h3>NeuroShop 🛒</h3>
+            <div>🪙 <span id="shop-coin-count">120</span></div>
+        </header>
+        <div class="container">
+            <div class="shop-grid">
+                <div class="shop-item card" data-id="costume_hat" data-cost="50">
+                    <span class="item-visual">🎩</span>
+                    <h4>Sihirbaz Şapkası</h4>
+                    <button class="btn btn-sm btn-primary buy-btn">50 Co</button>
+                </div>
+                <div class="shop-item card" data-id="room_wallpaper" data-cost="100">
+                    <span class="item-visual">🌌</span>
+                    <h4>Uzay Duvar Kağıdı</h4>
+                    <button class="btn btn-sm btn-primary buy-btn">100 Co</button>
+                </div>
+                <div class="shop-item card" data-id="effect_sparkle" data-cost="30">
+                    <span class="item-visual">✨</span>
+                    <h4>Işıltı Efekti</h4>
+                    <button class="btn btn-sm btn-primary buy-btn">30 Co</button>
+                </div>
+            </div>
+        </div>
+        <nav class="bottom-nav">
+            <button class="nav-item" data-target="child-dashboard">🗺️ Yolculuk</button>
+            <button class="nav-item" data-target="neurobot-room-view">🏠 Bot Odası</button>
+            <button class="nav-item active" data-target="shop-view">🛒 Mağaza</button>
+        </nav>
+    </section>
+
+    <section id="game-view" class="view">
+        <header class="app-header">
+            <h3 id="game-title">Kelime Bahçesi Oyunu</h3>
+            <button class="btn btn-sm btn-secondary safety-exit">Kapat</button>
+        </header>
+        <div class="container active-therapy-layout">
+            <div class="camera-feedback-box card">
+                <video id="webcam-preview" autoplay playsinline muted></video>
+                <div class="face-overlay-guide"></div>
+                <span class="cam-badge">Canlı Ayna ve Ağız Kılavuzu</span>
+            </div>
+
+            <div class="game-task-card card text-center">
+                <p class="task-instruction">Lütfen aşağıdaki kelimeyi yüksek sesle ve netçe tekrarla:</p>
+                <h2 id="target-speech-text">BALIK</h2>
+                <button id="btn-listen-target" class="btn btn-sm btn-secondary">🔊 Dinle</button>
+            </div>
+
+            <div class="microphone-control text-center">
+                <button id="btn-trigger-mic" class="mic-huge-btn">🎙️</button>
+                <p id="mic-status-text">Konuşmak için mikrofona dokun</p>
+            </div>
+
+            <div id="game-feedback-animation" class="feedback-anim"></div>
+        </div>
+    </section>
+
+    <section id="parent-dashboard" class="view">
+        <header class="app-header">
+            <h3>Ebeveyn Takip Paneli 👪</h3>
+            <button class="btn-logout">Çıkış</button>
+        </header>
+        <div class="container">
+            <div class="card stat-summary">
+                <h4>Çocuğunuzun Bu Haftaki Gelişimi</h4>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 78%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size:14px; color:#555;">🚀 <strong>Yapay Zeka Analizi:</strong> Telaffuz doğruluğu bu hafta %15 arttı. R ve S seslerindeki başarı stabil ilerliyor.</p>
+            </div>
+
+            <h3>Gelişim Metrikleri</h3>
+            <table class="report-table card">
+                <thead>
+                    <tr>
+                        <th>Modül</th>
+                        <th>Tamamlanma</th>
+                        <th>Doğruluk Skor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Harf Modülü</td><td>%100</td><td>%92</td></tr>
+                    <tr><td>Hece Modülü</td><td>%85</td><td>%80</td></tr>
+                    <tr><td>Kelime Modülü</td><td>%40</td><td>%75</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="therapist-dashboard" class="view">
+        <header class="app-header">
+            <h3>Terapist Yönetim Sistemi 🩺</h3>
+            <button class="btn-logout">Çıkış</button>
+        </header>
+        <div class="container">
+            <div class="demo-badge-panel card">
+                <h4>📊 Klinik Genel Durum (Demo Modu)</h4>
+                <div class="demo-stats-grid">
+                    <div><strong>120</strong> <br>Aktif Çocuk</div>
+                    <div><strong>40</strong> <br>Uzman Terapist</div>
+                    <div><strong>500+</strong> <br>Aktivite</div>
+                    <div><strong>%85</strong> <br>İyileşme Oranı</div>
+                </div>
+            </div>
+
+            <h3>Danışan Çocuk Listesi</h3>
+            <div class="patient-list">
+                <div class="patient-card card">
+                    <div class="patient-info">
+                        <strong>Alp Yılmaz (8 Yaş)</strong>
+                        <p>Konuşma Apraksisi - Aşama: Kelime Seviyesi</p>
+                    </div>
+                    <div class="patient-actions">
+                        <button class="btn btn-sm btn-primary btn-unlock-level" data-child="alp">Cümle Kilidini Aç</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
